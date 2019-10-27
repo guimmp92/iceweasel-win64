@@ -9,8 +9,8 @@
 [The latest version](https://github.com/muslayev/iceweasel-win64/releases)<br />
 ### Description
 It's just Firefox with:
-- [Privacy settings](https://github.com/muslayev/iceweasel-win64/blob/master/firefox-branding.js) (gathered from IceCat, [pyllyukko](https://github.com/pyllyukko/user.js), [gHacks](https://github.com/ghacksuserjs/ghacks-user.js))
-- Build [options](https://github.com/muslayev/iceweasel-win64/blob/master/mozconfig)
+- [Privacy settings](https://github.com/muslayev/iceweasel-win64/blob/master/settings.js) (gathered from IceCat, [pyllyukko](https://github.com/pyllyukko/user.js), [gHacks](https://github.com/ghacksuserjs/ghacks-user.js))
+- Build [options](https://github.com/muslayev/iceweasel-win64/blob/master/moz.config)
 - Iceweasel branding
 - Own profile location *%USERPROFILE%\AppData\Roaming\Debian\Iceweasel*
 ### Troubleshoot video playback issues
