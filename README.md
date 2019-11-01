@@ -13,7 +13,7 @@ It's just Firefox with:
 - Build [options](https://github.com/muslayev/iceweasel-win64/blob/master/src/mozconfig)
 - Iceweasel branding
 - Own profile location *%USERPROFILE%\AppData\Roaming\Debian\Iceweasel*
-- Vide playback [support](http://dmlinking.net/~pe1rxq/video.html) for *video/x-matroska* mime type, [patch](https://bugzilla.mozilla.org/show_bug.cgi?id=1562862).
+- Video playback [support](http://dmlinking.net/~pe1rxq/video.html) for *video/x-matroska* mime type, [patch](https://bugzilla.mozilla.org/show_bug.cgi?id=1562862).
 ![mkv](https://raw.githubusercontent.com/muslayev/iceweasel-win64/master/mkv.png)
 
 ### Troubleshoot video playback issues
