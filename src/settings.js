@@ -5,7 +5,7 @@
 // This file contains branding-specific prefs.
 
 pref("startup.homepage_override_url", "");
-pref("startup.homepage_welcome_url", "https://wiki.debian.org/Iceweasel");
+pref("startup.homepage_welcome_url", "https://wiki.debian.org/Firefox#Iceweasel");
 pref("startup.homepage_welcome_url.additional", "");
 // Interval: Time between checks for a new version (in seconds)
 pref("app.update.interval", 43200); // 12 hours
@@ -17,13 +17,13 @@ pref("app.update.promptWaitTime", 691200);
 // update" link supplied in the "An update is available" page of the update
 // wizard.
 #if MOZ_UPDATE_CHANNEL == beta
-pref("app.update.url.manual", "https://packages.debian.org/iceweasel");
-pref("app.update.url.details", "https://tracker.debian.org/pkg/iceweasel");
-pref("app.releaseNotesURL", "https://wiki.debian.org/Iceweasel");
+pref("app.update.url.manual", "https://packages.debian.org/firefox-esr");
+pref("app.update.url.details", "https://tracker.debian.org/pkg/firefox-esr");
+pref("app.releaseNotesURL", "https://wiki.debian.org/Firefox#Iceweasel");
 #else
-pref("app.update.url.manual", "https://packages.debian.org/iceweasel");
-pref("app.update.url.details", "https://tracker.debian.org/pkg/iceweasel");
-pref("app.releaseNotesURL", "https://wiki.debian.org/Iceweasel");
+pref("app.update.url.manual", "https://packages.debian.org/firefox-esr");
+pref("app.update.url.details", "https://tracker.debian.org/pkg/firefox-esr");
+pref("app.releaseNotesURL", "https://wiki.debian.org/Firefox#Iceweasel");
 #endif
 
 // The number of days a binary is permitted to be old
@@ -35,15 +35,16 @@ pref("app.update.checkInstallTime.days", 63);
 // button. default=4 days
 pref("app.update.badgeWaitTime", 345600);
 
-// Number of usages of the web console or scratchpad.
-// If this is less than 5, then pasting code into the web console or scratchpad is disabled
+// Number of usages of the web console.
+// If this is less than 5, then pasting code into the web console is disabled
 pref("devtools.selfxss.count", 0);
 
 /************PREFETCHING************/
-// Disable URL prefetching <link rel="prefetch"> <link rel="next"> (website hints to the Firefox that certain URL are likely to be visited)
+// Disable URL prefetching <link rel="prefetch"> <link rel="next"> (website hints to the Firefox that certain URLs are likely to be visited)
 pref("network.prefetch-next", false);
 // Disable URL preloading <link rel="preload">
 pref("network.preload", false);
+pref("network.preload-experimental", false);
 // Disable DNS prefetching for all URLs on the website
 pref("network.dns.disablePrefetch", true);
 pref("network.dns.disablePrefetchFromHTTPS", true);
@@ -51,6 +52,7 @@ pref("network.dns.disablePrefetchFromHTTPS", true);
 pref("network.http.speculative-parallel-limit", 0);
 // Disable network predictor (previously known as Seer)
 pref("network.predictor.enabled", false);
+pref("network.predictor.enable-prefetch", false);
 // Disable location bar making speculative connections
 pref("browser.urlbar.speculativeConnect.enabled", false);
 
@@ -71,7 +73,9 @@ pref("app.shield.optoutstudies.enabled", false);
 pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
 // Disable Firefox Shield/Heartbeat (provides real-time understanding of existing Desktop user population)
 pref("app.normandy.enabled", false);
-// Disable Telemetry in about:telemetry and in Firefox Home Page
+// Disable verification of the visited websites at monitor.firefox.com (indicates if the saved login is part of a data breach): "Show alerts about passwords for breached websites" in Prefs
+pref("signon.management.page.breach-alerts.enabled", false);
+// Disable Telemetry and data collection in about:telemetry and in Firefox Home Page
 pref("toolkit.telemetry.enabled", false);
 pref("toolkit.telemetry.unified", false);
 pref("browser.newtabpage.activity-stream.telemetry", false);
@@ -97,18 +101,19 @@ pref("browser.send_pings.require_same_host", true);
 // Disable Geolocation
 pref("geo.enabled", false);
 // Use Mozilla Geolocation Service instead Google (if "geo.enabled" is true)
-pref("geo.wifi.uri", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
-// Disable third party cookies
+pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
+// Disable third party cookies: "All third-party cookies" in Prefs
 pref("network.cookie.cookieBehavior", 1);
-// Enable First Party Isolation (restricts access to cookies, the cache, and similar data to domain level only)
-pref("privacy.firstparty.isolate", true);
-// Enable Tracking Protection
+// Enable fingerprinting protection: "Fingerprinters" in Prefs
+pref("privacy.trackingprotection.fingerprinting.enabled", true); 
+// Enable Tracking Protection and use Mozilla Service for updates: "Tracking content in all windows" and "Social media trackers" in Prefs
 pref("privacy.trackingprotection.enabled", true);
 pref("privacy.trackingprotection.socialtracking.enabled", true);
-// Use Mozilla Service ("browser.safebrowsing.provider.mozilla.updateURL") for Tracking Protection updates
 pref("browser.safebrowsing.provider.google.updateURL", "127.0.0.1");
-// Enable protections against cryptocurrency mining
+// Enable protections against cryptocurrency mining: "Cryptominers" in Prefs
 pref("privacy.trackingprotection.cryptomining.enabled", true);
+// Enable First Party Isolation (restricts access to cookies, the cache, and similar data to domain level only)
+pref("privacy.firstparty.isolate", true);
 // Enable DNT (Do Not Track)
 pref("privacy.donottrackheader.enabled", true);
 // Disable SPDY (networking protocol, which is supposed to reduce load latency on websites is yet another way of determining your real profile regardless if the user agent is spoofed)
@@ -207,7 +212,6 @@ pref("browser.bookmarks.max_backups", 0);
 /************UPDATING************/
 // Disable Mozilla Maintenance Service, and remove update URL (allows Firefox updates to occur in the background)
 pref("app.update.service.enabled", false);
-pref("app.update.url", "127.0.0.1");
 // Disable Microsoft Background Intelligent Transfer Service (allows to download updates even if Firefox is closed)
 pref("app.update.BITS.enabled", false);
 // Disable checking of install time
@@ -265,7 +269,7 @@ pref("browser.uiCustomization.state", "{\"placements\":{\"nav-bar\":[\"back-butt
 pref("toolkit.cosmeticAnimations.enabled", false);
 // Don't close Firefox when you close the last tab
 pref("browser.tabs.closeWindowWithLastTab", false);
-// Disable confirmation dialog on multiple tabs closing/opening, others tabs closing
+// Disable confirmation dialog on multiple tabs closing/opening, other tabs closing
 pref("browser.tabs.warnOnClose", false);
 pref("browser.tabs.warnOnOpen", false);
 pref("browser.tabs.warnOnCloseOtherTabs", false);
@@ -273,12 +277,7 @@ pref("browser.sessionstore.warnOnQuit", false);
 // Always ask before restoring the browsing session after crash
 pref("browser.sessionstore.max_resumed_crashes", 0);
 // Disable warning in about:config
-pref("general.warnOnAboutConfig", false);
 pref("browser.aboutConfig.showWarning", false);
-// Disable warning in about:networking
-pref("network.warnOnAboutNetworking", false);
-// Don't hide Features/System Add-ons in about:debugging
-pref("devtools.aboutdebugging.showHiddenAddons", true);
 // Disable adding downloaded files to the system's Recent Documents list [WINDOWS]
 pref("browser.download.manager.addToRecentDocs", false);
 // When copying URLs from the address bar they will be decoded instead of being encoded, so they are human readable
@@ -295,12 +294,12 @@ pref("browser.taskbar.previews.enable", false);
 pref("browser.startup.homepage", "about:blank");
 pref("browser.newtabpage.enabled", false);
 // Disable all except Search field in Firefox Home Page (if "browser.newtabpage.enabled" is true)
-pref("browser.newtabpage.activity-stream.default.sites", "https://www.trisquel.info/,https://www.gnu.org/,https://www.fsf.org/,https://libreplanet.org/,https://www.wikipedia.org/,https://www.wikinews.org/");
+pref("browser.newtabpage.activity-stream.default.sites", "https://www.debian.org/,https://www.gnu.org/");
 pref("browser.newtabpage.activity-stream.showSearch", true);
 pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
-pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 // Disable UITour (first run)
 pref("browser.uitour.enabled", false);
 // Disable What's New Notices (after Firefox is updated)
@@ -311,17 +310,19 @@ pref("browser.slowStartup.notificationDisabled", true);
 pref("identity.fxaccounts.enabled", false);
 // Enable Search Field
 pref("browser.search.widget.inNavBar", true);
-// Disable Mozilla-provided location-specific search engines
+// Disable Mozilla-provided location-specific search engines, and remove update URL
 pref("browser.search.geoSpecificDefaults", false);
-// Disable GeoIP-based search results, and remove update URL
+pref("browser.search.geoSpecificDefaults.url", "127.0.0.1");
+// Disable GeoIP-based search results
 pref("browser.search.region", "US");
-pref("browser.search.geoip.url", "127.0.0.1");
 // Disable address bar search suggestions: "Show search suggestions in address bar results" in Prefs
 pref("browser.urlbar.suggest.searches", false);
 // Don't show search suggestions ahead of browsing history in address bar results (if "browser.urlbar.suggest.searches" is true) [HIDDEN]
 pref("browser.urlbar.matchBuckets", "general:5,suggestion:Infinity");
 // Disable address bar one-off searches (if "browser.urlbar.suggest.searches" is true)
 pref("browser.urlbar.oneOffSearches", false);
+// Disable new address bar
+pref("browser.urlbar.update1", false);
 // Disable address bar domain guessing
 pref("browser.fixup.alternate.enabled", false);
 // Disable address bar open tabs suggestions: "When using the address bar, suggest Open tabs" in Prefs
@@ -334,6 +335,8 @@ pref("full-screen-api.warning.timeout", 0);
 pref("media.autoplay.default", 5);
 // Disable autoplay of HTML5 muted media (audio/video), if you interacted with the site
 pref("media.autoplay.enabled.user-gestures-needed", false);
+// Disable Picture-in-picture feature fuature: "Enable picture-in-picture video controls" in Prefs
+pref("media.videocontrols.picture-in-picture.enabled", false);
 // Enable spell checking in all text fields
 pref("layout.spellcheckDefault", 2);
 // Disable previous page by clicking Backspace
@@ -343,11 +346,13 @@ pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // URLs in Help menu
 pref("app.support.baseURL", "https://www.debian.org/support");
 pref("app.feedback.baseURL", "https://lists.debian.org/users.html");
-pref("browser.uitour.url", "https://wiki.debian.org/Iceweasel");
+pref("browser.uitour.url", "https://wiki.debian.org/Firefox#Iceweasel");
+// Don't hide Features/System Add-ons in about:debugging
+pref("devtools.aboutdebugging.showHiddenAddons", true);
 // Disable "Recommendations" section in about:addons [HIDDEN]
 pref("extensions.getAddons.showPane", false);
 // Disable recommendations in "Extensions/Themes" sections in about:addons
-pref("extensions.htmlaboutaddons.enabled", false);
+pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 // Disable recommended extensions suggestions: "Recommend extensions as you browse" in Prefs
 pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
 // Disable recommended features suggestions: "Recommend features as you browse" in Prefs
